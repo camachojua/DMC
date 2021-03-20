@@ -26,6 +26,12 @@ class MainActivity : AppCompatActivity() {
             }
 
             if (login(username_edit_text.text.toString(), password_edit_text.text.toString())) {
+                var bundle = Bundle();
+                bundle.putString("nombre", username_edit_text.text.toString());
+                val apodoPersona = apodo(username_edit_text.text.toString())
+                bundle.putString("apodo", apodoPersona);
+                fragmento.arguments = bundle;
+
                 supportFragmentManager.beginTransaction().apply {
                     replace(R.id.contenedor, fragmento)
                     commit()
@@ -50,17 +56,15 @@ class MainActivity : AppCompatActivity() {
         personas.add(Persona("Adriana", "hola123,", "La chida"));
     }
 
-    private fun login(Nombre: String, Password: String): Boolean {
-        val res = personas.map { persona ->
-            if (persona.getNombre() == Nombre) return persona.checaPassword(Password);
-        }
-        return false;
+    private fun login(nombre: String, Password: String): Boolean {
+        return personas.first { it.getNombre() == nombre }.checaPassword(Password);
     }
 
     private fun apodo(Nombre: String): String {
-        personas.map { persona ->
-            if (persona.getNombre() == Nombre) return persona.getApodo()
-        }
-        return ""
+        return personas.first { it.getNombre() == Nombre }.getApodo()
+//        personas.map { persona ->
+//            if (persona.getNombre() == Nombre) return persona.getApodo()
+//        }
+//        return ""
     }
 }
