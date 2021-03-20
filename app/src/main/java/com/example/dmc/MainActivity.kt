@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.text.Editable
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
+import com.example.dmc.Persona.ErrorFragment
 import com.example.dmc.Persona.Persona
 import kotlinx.android.synthetic.main.login_fragment.*
 
 class MainActivity : AppCompatActivity() {
     lateinit var fragmento: DetalleFragment;
+    lateinit var errorFragment: ErrorFragment;
     var personas: ArrayList<Persona> = ArrayList<Persona>();
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,6 +37,11 @@ class MainActivity : AppCompatActivity() {
                 fragmento.arguments = bundle
                 supportFragmentManager.beginTransaction().apply {
                     replace(R.id.contenedor, fragmento)
+                    commit()
+                }
+            } else {
+                supportFragmentManager.beginTransaction().apply {
+                    replace(R.id.contenedor, errorFragment)
                     commit()
                 }
             }
