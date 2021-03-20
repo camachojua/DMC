@@ -27,11 +27,12 @@ class MainActivity : AppCompatActivity() {
 
             if (login(username_edit_text.text.toString(), password_edit_text.text.toString())) {
                 var bundle = Bundle();
-                bundle.putString("nombre", username_edit_text.text.toString());
                 val apodoPersona = apodo(username_edit_text.text.toString())
-                bundle.putString("apodo", apodoPersona);
-                fragmento.arguments = bundle;
 
+                bundle.putString("NOMBRE", username_edit_text.text.toString());
+                bundle.putString("APODO", apodoPersona);
+
+                fragmento.arguments = bundle
                 supportFragmentManager.beginTransaction().apply {
                     replace(R.id.contenedor, fragmento)
                     commit()

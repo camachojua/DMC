@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_margin="8dp">
+        android:layout_margin="16dp">
 
         <TextView
             android:id="@+id/texto1"
@@ -20,9 +20,9 @@
 
         <TextView
             android:id="@+id/texto2"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Aquí va otra cosa"/>
+            android:text="Aquí va el apodo"/>
     </LinearLayout>
 </FrameLayout>
