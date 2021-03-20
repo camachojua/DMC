@@ -29,6 +29,7 @@
         app:layout_constraintTop_toBottomOf="@id/texto2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/button2"
+        android:onClick="lanzaFragmento"
         />
 
     <Button
@@ -38,7 +39,8 @@
         android:layout_marginEnd="60dp"
         android:text="Botón 2"
         app:layout_constraintTop_toTopOf="@id/button"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        android:onClick="lanzaFragmento"/>
 
     <EditText
         android:id="@+id/texto1"
