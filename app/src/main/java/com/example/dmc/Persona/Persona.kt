@@ -6,8 +6,7 @@ class Persona constructor(Nombre: String, Password: String, Apodo: String) {
     private val Apodo: String = Apodo;
 
     public fun checaPassword (Password: String): Boolean {
-        if (Password === this.Password) return true;
-        return false;
+        return Password == this.Password;
     }
 
     public fun getNombre(): String {

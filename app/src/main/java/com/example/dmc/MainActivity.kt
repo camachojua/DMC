@@ -2,8 +2,6 @@ package com.example.dmc
 
 import android.os.Bundle
 import android.text.Editable
-import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import com.example.dmc.Persona.Persona
@@ -11,7 +9,7 @@ import kotlinx.android.synthetic.main.login_fragment.*
 
 class MainActivity : AppCompatActivity() {
     lateinit var fragmento: DetalleFragment;
-    lateinit var personas: ArrayList<Persona>;
+    var personas: ArrayList<Persona> = ArrayList<Persona>();
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,10 +25,13 @@ class MainActivity : AppCompatActivity() {
                 password_text_input.error = null;
             }
 
-            if (login(username_edit_text.text.toString(), password_edit_text.text.toString()))
-                Toast.makeText(this, "INICIO DE SESIÓN VÁLIDO", Toast.LENGTH_LONG)
+            if (login(username_edit_text.text.toString(), password_edit_text.text.toString())) {
+                supportFragmentManager.beginTransaction().apply {
+                    replace(R.id.contenedor, fragmento)
+                    commit()
+                }
+            }
         }
-
         password_edit_text.addTextChangedListener {
             if (isPasswordValid(password_edit_text.text!!))
                 password_text_input.error = null
@@ -50,16 +51,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun login(Nombre: String, Password: String): Boolean {
-        personas.map { persona: Persona ->
-            if (persona.getNombre() == Nombre) return persona.checaPassword(Password)
+        val res = personas.map { persona ->
+            if (persona.getNombre() == Nombre) return persona.checaPassword(Password);
         }
-        return false
+        return false;
     }
 
-    fun lanzaFragmento(view: View) {
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.contenedor, fragmento)
-            commit()
+    private fun apodo(Nombre: String): String {
+        personas.map { persona ->
+            if (persona.getNombre() == Nombre) return persona.getApodo()
         }
+        return ""
     }
 }
